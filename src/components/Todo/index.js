@@ -1,8 +1,9 @@
-import { Row, Tag, Checkbox } from "antd";
+import { EditOutlined } from "@ant-design/icons/lib/icons";
+import { Row, Tag, Checkbox, Button } from "antd";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { toggleTodoStatus } from "../../redux/actions";
 
+import { useDispatch } from "react-redux";
+import todoListSlicer from "../TodoList/reducer";
 const priorityColorMapping = {
   High: "red",
   Medium: "blue",
@@ -15,7 +16,7 @@ export default function Todo({ id, name, priority, completed }) {
 
   const toggleCheckbox = () => {
     setChecked(!checked);
-    dispatch(toggleTodoStatus(id))
+    dispatch(todoListSlicer.actions.toggleTodoStatus(id));
   };
 
   return (
@@ -26,12 +27,40 @@ export default function Todo({ id, name, priority, completed }) {
         ...(checked ? { opacity: 0.5, textDecoration: "line-through" } : {}),
       }}
     >
-      <Checkbox checked={checked} onChange={() => {toggleCheckbox()}}>
+      <Checkbox
+        checked={checked}
+        onChange={() => {
+          toggleCheckbox();
+        }}
+      >
         {name}
       </Checkbox>
-      <Tag color={priorityColorMapping[priority]} style={{ margin: 0 }}>
-        {priority}
-      </Tag>
+      <div>
+        <Tag color={priorityColorMapping[priority]} style={{ margin: 0 }}>
+          {priority}
+        </Tag>
+        <Button
+         type="primary"
+          size="small"
+          shape="circle"
+          style={{
+            marginLeft: 15,
+          }}
+        >
+          <EditOutlined />
+        </Button>
+        <Button
+         type="primary"
+          danger
+          size="small"
+          shape="circle"
+          style={{
+            marginLeft: 15,
+          }}
+        >
+          x
+        </Button>
+      </div>
     </Row>
   );
 }

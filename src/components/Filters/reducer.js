@@ -1,29 +1,22 @@
-const initialState = {
-  search: "",
-  status: "All",
-  priorities: [],
-};
+import { createSlice } from "@reduxjs/toolkit";
 
-const filtersReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "filters/searchFilterChange":
-      return {
-        ...state,
-        search: action.payload,
-      };
-    case "filters/statusFilterChange":
-      return {
-        ...state,
-        status: action.payload,
-      };
-    case "filters/priorityFilterChange":
-      return {
-        ...state,
-        priorities: action.payload,
-      }
-    default:
-      return state;
-  }
-};
-
-export default filtersReducer;
+export default createSlice({
+  name: "filters",
+  initialState: {
+    search: "",
+    status: "All",
+    priorities: [],
+  },
+  reducers: {
+    searchFilterChange: (state, action) => {
+      // mutation || IMMER lib can write mutation like below
+      state.search = action.payload;
+    },
+    statusFilterChange: (state, action) => {
+      state.status = action.payload;
+    },
+    priorityFilterChange: (state, action) => {
+      state.priorities = action.payload;
+    },
+  },
+});
