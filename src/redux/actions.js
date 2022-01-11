@@ -5,22 +5,27 @@ export const addTodo = (data) => ({
   payload: data,
 });
 
-export const toggleTodoStatus = (data) => ({
+export const toggleTodoStatus = (id) => ({
   type: "todoList/toggleTodoStatus",
-  payload: data
+  payload: id
 });
 
-export const searchFilterChange = (data) => ({
+export const deleteTodo = (id) => ({
+  type: "todoList/deleteTodo",
+  payload: id,
+});
+
+export const searchFilterChange = (text) => ({
   type: "filters/searchFilterChange",
-  payload: data,
+  payload: text,
 });
 
-export const statusFilterChange = (data) => ({
+export const statusFilterChange = (status) => ({
   type: "filters/statusFilterChange",
-  payload: data,
+  payload: status,
 });
 
-export const priorityFilterChange = (data) => ({
+export const priorityFilterChange = (priorities) => ({
   type: "filters/priorityFilterChange",
-  payload: data,
+  payload: priorities,
 });

@@ -19,6 +19,9 @@ export default function Todo({ id, name, priority, completed }) {
     dispatch(todoListSlicer.actions.toggleTodoStatus(id));
   };
 
+  const handleClickDeleteTodo = () => {
+    dispatch(todoListSlicer.actions.deleteTodo(id));
+  }
   return (
     <Row
       justify="space-between"
@@ -50,6 +53,7 @@ export default function Todo({ id, name, priority, completed }) {
           <EditOutlined />
         </Button>
         <Button
+        onClick={handleClickDeleteTodo}
          type="primary"
           danger
           size="small"

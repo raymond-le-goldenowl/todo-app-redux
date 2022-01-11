@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export default createSlice({
   name: "todoList",
   initialState: [
-    { id: 1, name: "Eat", completed: true, priority: "Medium" },
-    { id: 2, name: "Code", completed: true, priority: "High" },
+    { id: 1, name: "Eat", completed: false, priority: "Medium" },
+    { id: 2, name: "Code", completed: false, priority: "High" },
     { id: 3, name: "Sleep", completed: false, priority: "Low" },
   ],
   reducers: {
@@ -14,6 +14,9 @@ export default createSlice({
     toggleTodoStatus: (state, action) => {
       const currentTodo = state.find((todo) => todo.id === action.payload);
       currentTodo.completed = !currentTodo.completed;
+    },
+    deleteTodo: (state, action) => {
+      return state.filter((todo) => todo.id !== action.payload);
     },
   },
 });

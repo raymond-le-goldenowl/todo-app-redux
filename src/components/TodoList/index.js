@@ -12,7 +12,6 @@ export default function TodoList() {
 
   const dispatch = useDispatch();
   const todoList = useSelector(todosRemainingSelector);
-  console.log(todoList)
   const handleInputChange = (e) => {
     setName(e.target.value);
   };
