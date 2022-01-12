@@ -18,5 +18,8 @@ export default createSlice({
     deleteTodo: (state, action) => {
       return state.filter((todo) => todo.id !== action.payload);
     },
+    updateTodo: (state, action) => {
+      return action.payload
+    }
   },
 });

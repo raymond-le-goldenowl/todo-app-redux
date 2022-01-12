@@ -3,7 +3,7 @@ import { Row, Tag, Checkbox, Button } from "antd";
 import { useState } from "react";
 
 import { useDispatch } from "react-redux";
-import todoListSlicer from "../TodoList/reducer";
+import todoListSlicer from "../TodoList/todoListSlice";
 const priorityColorMapping = {
   High: "red",
   Medium: "blue",
