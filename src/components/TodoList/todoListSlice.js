@@ -18,8 +18,13 @@ export default createSlice({
     deleteTodo: (state, action) => {
       return state.filter((todo) => todo.id !== action.payload);
     },
-    updateTodo: (state, action) => {
-      return action.payload
-    }
+    editTodo: (state, action) => {
+      return state.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return action.payload;
+        }
+        return todo;
+      });
+    },
   },
 });

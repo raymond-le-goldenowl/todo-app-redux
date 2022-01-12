@@ -1,8 +1,10 @@
 import { EditOutlined } from "@ant-design/icons/lib/icons";
-import { Row, Tag, Checkbox, Button } from "antd";
-import { useState } from "react";
+import { Row, Tag, Checkbox, Button, Select, Col, Input } from "antd";
+import Modal from "antd/lib/modal/Modal";
+import { useEffect, useState } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { todosRemainingSelector } from "../../redux/selectors";
 import todoListSlicer from "../TodoList/todoListSlice";
 const priorityColorMapping = {
   High: "red",
@@ -13,6 +15,24 @@ const priorityColorMapping = {
 export default function Todo({ id, name, priority, completed }) {
   const [checked, setChecked] = useState(completed);
   const dispatch = useDispatch();
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [todoId, setTodoId] = useState(null);
+  const todoList = useSelector(todosRemainingSelector);
+  const [updateTodo, setUpdateTodo] = useState({
+    id: null,
+    name: null,
+    priority: null,
+    completed: null,
+  });
+
+  useEffect(() => {
+    setUpdateTodo(todoList.find((todo) => todo.id === todoId));
+  }, [todoId, todoList]);
+
+  const handleButtonEditClick = () => {
+    setTodoId(id);
+    showModal();
+  };
 
   const toggleCheckbox = () => {
     setChecked(!checked);
@@ -21,7 +41,28 @@ export default function Todo({ id, name, priority, completed }) {
 
   const handleClickDeleteTodo = () => {
     dispatch(todoListSlicer.actions.deleteTodo(id));
-  }
+  };
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+    dispatch(todoListSlicer.actions.editTodo(updateTodo));
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleInputChange = (event) => {
+    setUpdateTodo({ ...updateTodo, name: event.target.value });
+  };
+  const handlePriorityChange = (value) => {
+    setUpdateTodo({ ...updateTodo, priority: value });
+  };
+
   return (
     <Row
       justify="space-between"
@@ -43,18 +84,19 @@ export default function Todo({ id, name, priority, completed }) {
           {priority}
         </Tag>
         <Button
-         type="primary"
+          type="primary"
           size="small"
           shape="circle"
           style={{
             marginLeft: 15,
           }}
+          onClick={handleButtonEditClick}
         >
           <EditOutlined />
         </Button>
         <Button
-        onClick={handleClickDeleteTodo}
-         type="primary"
+          onClick={handleClickDeleteTodo}
+          type="primary"
           danger
           size="small"
           shape="circle"
@@ -65,6 +107,33 @@ export default function Todo({ id, name, priority, completed }) {
           x
         </Button>
       </div>
+      <Modal
+        title="Basic Modal"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <Col span={24}>
+          <Input.Group style={{ display: "flex" }}>
+            <Input value={updateTodo?.name} onChange={handleInputChange} />
+            <Select
+              defaultValue="Medium"
+              value={updateTodo?.priority}
+              onChange={handlePriorityChange}
+            >
+              <Select.Option value="High" label="High">
+                <Tag color="red">High</Tag>
+              </Select.Option>
+              <Select.Option value="Medium" label="Medium">
+                <Tag color="blue">Medium</Tag>
+              </Select.Option>
+              <Select.Option value="Low" label="Low">
+                <Tag color="gray">Low</Tag>
+              </Select.Option>
+            </Select>
+          </Input.Group>
+        </Col>
+      </Modal>
     </Row>
   );
 }
