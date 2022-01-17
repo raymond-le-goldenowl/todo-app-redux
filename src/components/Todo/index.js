@@ -2,7 +2,7 @@ import { EditOutlined } from "@ant-design/icons/lib/icons";
 import { Row, Tag, Checkbox, Button, Select, Col, Input } from "antd";
 import Modal from "antd/lib/modal/Modal";
 import { useEffect, useState } from "react";
-
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { todosRemainingSelector } from "../../redux/selectors";
 import todoListSlicer from "../TodoList/todoListSlice";
@@ -13,6 +13,7 @@ const priorityColorMapping = {
 };
 
 export default function Todo({ id, name, priority, completed }) {
+  const { t } = useTranslation();
   const [checked, setChecked] = useState(completed);
   const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -81,7 +82,7 @@ export default function Todo({ id, name, priority, completed }) {
       </Checkbox>
       <div>
         <Tag color={priorityColorMapping[priority]} style={{ margin: 0 }}>
-          {priority}
+          {t(`todo_list.${priority.toLowerCase()}`)}
         </Tag>
         <Button
           type="primary"
@@ -122,13 +123,13 @@ export default function Todo({ id, name, priority, completed }) {
               onChange={handlePriorityChange}
             >
               <Select.Option value="High" label="High">
-                <Tag color="red">High</Tag>
+                <Tag color="red">{t("add_todo.high")}</Tag>
               </Select.Option>
               <Select.Option value="Medium" label="Medium">
-                <Tag color="blue">Medium</Tag>
+                <Tag color="blue">{t("add_todo.medium")}</Tag>
               </Select.Option>
               <Select.Option value="Low" label="Low">
-                <Tag color="gray">Low</Tag>
+                <Tag color="gray">{t("add_todo.low")}</Tag>
               </Select.Option>
             </Select>
           </Input.Group>

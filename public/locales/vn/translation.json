@@ -1,0 +1,28 @@
+{
+  "logo": "Ứng dụng todo list với redux",
+  "title": "xin chao",
+  "description": {
+    "part1": "Xin chao, chuc mot ngay tot lanh!"
+  },
+  "filter": {
+    "search": "Tìm kiếm",
+    "input_search_text": "Nhập giá trị tìm kiếm",
+    "filter_by_status": "Lọc theo trạng thái",
+    "all": "Toàn bộ",
+    "completed": "Hoàn thành",
+    "todo": "Cần làm",
+    "filter_by_priority": "Lọc theo độ ưu tiên",
+    "please_select": "Vui lòng chọn"
+  },
+  "todo_list": {
+    "medium": "Vừa",
+    "high": "Cao",
+    "low": "Thấp"
+  },
+  "add_todo": {
+    "add": "Thêm",
+	"medium": "Vừa",
+    "high": "Cao",
+    "low": "Thấp"
+  }
+}

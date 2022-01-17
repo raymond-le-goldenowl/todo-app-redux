@@ -5,8 +5,10 @@ import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import { todosRemainingSelector } from "../../redux/selectors";
 import todoListSlicer from "./todoListSlice";
+import { useTranslation } from "react-i18next";
 
 export default function TodoList() {
+  const { t } = useTranslation();
   const [name, setName] = useState("");
   const [priority, setPriority] = useState("Medium");
 
@@ -57,17 +59,17 @@ export default function TodoList() {
             onChange={handlePriorityChange}
           >
             <Select.Option value="High" label="High">
-              <Tag color="red">High</Tag>
+              <Tag color="red">{t("todo_list.high")}</Tag>
             </Select.Option>
             <Select.Option value="Medium" label="Medium">
-              <Tag color="blue">Medium</Tag>
+              <Tag color="blue">{t("todo_list.medium")}</Tag>
             </Select.Option>
             <Select.Option value="Low" label="Low">
-              <Tag color="gray">Low</Tag>
+              <Tag color="gray">{t("todo_list.low")}</Tag>
             </Select.Option>
           </Select>
           <Button type="primary" onClick={handleAddButtonClick}>
-            Add
+            {t("add_todo.add")}
           </Button>
         </Input.Group>
       </Col>

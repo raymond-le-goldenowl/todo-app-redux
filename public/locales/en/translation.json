@@ -1,0 +1,28 @@
+{
+  "logo": "TODO APP with REDUX",
+  "title": "Hello",
+  "description": {
+    "part1": "Hello, have a good day!"
+  },
+  "filter": {
+    "search": "Search",
+    "input_search_text": "Input search text",
+    "filter_by_status": "Filter by status",
+    "all": "All",
+    "completed": "Completed",
+    "todo": "Todo",
+    "filter_by_priority": "Filter by priority",
+    "please_select": "Please select"
+  },
+  "todo_list": {
+    "medium": "Medium",
+    "high": "High",
+    "low": "Low"
+  },
+  "add_todo": {
+    "add": "Add",
+    "medium": "Medium",
+    "high": "High",
+    "low": "Low"
+  }
+}

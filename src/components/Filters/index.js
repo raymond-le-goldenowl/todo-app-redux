@@ -1,13 +1,16 @@
 import { Col, Row, Input, Typography, Radio, Select, Tag } from "antd";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import filtersSlicer from "./filtersSlice"
+import filtersSlicer from "./filtersSlice";
 const { Search } = Input;
 
 export default function Filters() {
   const [searchText, setSearchText] = useState("");
   const [filterStatus, setFilterStatus] = useState("All");
-  const [filterPriorities, setFilterPriorities] = useState([])
+  const [filterPriorities, setFilterPriorities] = useState([]);
+
+  const { t } = useTranslation();
 
   const dispatch = useDispatch();
 
@@ -22,9 +25,9 @@ export default function Filters() {
   };
 
   const handlePriorityChange = (values) => {
-    setFilterPriorities(values)
-    dispatch(filtersSlicer.actions.priorityFilterChange(values))
-  }
+    setFilterPriorities(values);
+    dispatch(filtersSlicer.actions.priorityFilterChange(values));
+  };
 
   return (
     <Row justify="center">
@@ -32,10 +35,10 @@ export default function Filters() {
         <Typography.Paragraph
           style={{ fontWeight: "bold", marginBottom: 3, marginTop: 10 }}
         >
-          Search
+          {t('filter.search')}
         </Typography.Paragraph>
         <Search
-          placeholder="input search text"
+          placeholder={t('filter.input_search_text')}
           value={searchText}
           onChange={handleSearchTextChange}
         />
@@ -44,24 +47,24 @@ export default function Filters() {
         <Typography.Paragraph
           style={{ fontWeight: "bold", marginBottom: 3, marginTop: 10 }}
         >
-          Filter By Status
+          {t('filter.filter_by_status')}
         </Typography.Paragraph>
         <Radio.Group value={filterStatus} onChange={onFilterStatusChange}>
-          <Radio value="All">All</Radio>
-          <Radio value="Completed">Completed</Radio>
-          <Radio value="Todo">To do</Radio>
+          <Radio value="All">{t('filter.all')}</Radio>
+          <Radio value="Completed">{t('filter.completed')}</Radio>
+          <Radio value="Todo">{t('filter.todo')}</Radio>
         </Radio.Group>
       </Col>
       <Col sm={24}>
         <Typography.Paragraph
           style={{ fontWeight: "bold", marginBottom: 3, marginTop: 10 }}
         >
-          Filter By Priority
+          {t('filter.filter_by_priority')}
         </Typography.Paragraph>
         <Select
           mode="multiple"
           allowClear
-          placeholder="Please select"
+          placeholder={t('filter.please_select')}
           style={{ width: "100%" }}
           value={filterPriorities}
           onChange={handlePriorityChange}
