@@ -1,7 +1,7 @@
 import { Col, Row, Input, Typography, Radio, Select, Tag } from "antd";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import filtersSlicer from "./reducer"
+import filtersSlicer from "./filtersSlice"
 const { Search } = Input;
 
 export default function Filters() {

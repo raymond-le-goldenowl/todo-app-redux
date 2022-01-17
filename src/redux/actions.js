@@ -15,6 +15,11 @@ export const deleteTodo = (id) => ({
   payload: id,
 });
 
+export const editTodo = (todo) => ({
+  type: "todoList/editTodo",
+  payload: todo,
+});
+
 export const searchFilterChange = (text) => ({
   type: "filters/searchFilterChange",
   payload: text,

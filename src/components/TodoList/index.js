@@ -8,10 +8,11 @@ import todoListSlicer from "./todoListSlice";
 
 export default function TodoList() {
   const [name, setName] = useState("");
-  const [priority, setPriority] = useState("Middle");
+  const [priority, setPriority] = useState("Medium");
 
   const dispatch = useDispatch();
   const todoList = useSelector(todosRemainingSelector);
+
   const handleInputChange = (e) => {
     setName(e.target.value);
   };
@@ -31,7 +32,7 @@ export default function TodoList() {
     );
 
     setName("");
-    setPriority("Middle");
+    setPriority("Medium");
   };
 
   return (
