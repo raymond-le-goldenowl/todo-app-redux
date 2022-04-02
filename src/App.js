@@ -1,13 +1,15 @@
 import { Typography, Divider, Button } from "antd";
-import "./App.css";
+import { Trans, useTranslation } from "react-i18next";
+
 import TodoList from "./components/TodoList";
 import Filters from "./components/Filters";
-import { Trans, useTranslation } from "react-i18next";
+
+import "./App.css";
 
 const { Title } = Typography;
 
 function App() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   return (
     <div

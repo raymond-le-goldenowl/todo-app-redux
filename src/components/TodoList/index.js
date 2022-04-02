@@ -1,11 +1,12 @@
-import { Col, Row, Input, Button, Select, Tag } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import Todo from "../Todo";
-import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
-import { todosRemainingSelector } from "../../redux/selectors";
-import todoListSlicer from "./todoListSlice";
+import { v4 as uuidv4 } from "uuid";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { Col, Row, Input, Button, Select, Tag } from "antd";
+
+import Todo from "../Todo";
+import todoListSlicer from "./todoListSlice";
+import { todosRemainingSelector } from "../../redux/selectors";
 
 export default function TodoList() {
   const { t } = useTranslation();

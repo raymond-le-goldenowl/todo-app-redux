@@ -1,8 +1,10 @@
-import { Col, Row, Input, Typography, Radio, Select, Tag } from "antd";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
+import { Col, Row, Input, Typography, Radio, Select, Tag } from "antd";
+
 import filtersSlicer from "./filtersSlice";
+
 const { Search } = Input;
 
 export default function Filters() {

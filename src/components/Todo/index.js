@@ -1,11 +1,13 @@
-import { EditOutlined } from "@ant-design/icons/lib/icons";
-import { Row, Tag, Checkbox, Button, Select, Col, Input } from "antd";
 import Modal from "antd/lib/modal/Modal";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { todosRemainingSelector } from "../../redux/selectors";
+import { EditOutlined } from "@ant-design/icons/lib/icons";
+import { Row, Tag, Checkbox, Button, Select, Col, Input } from "antd";
+
 import todoListSlicer from "../TodoList/todoListSlice";
+import { todosRemainingSelector } from "../../redux/selectors";
+
 const priorityColorMapping = {
   High: "red",
   Medium: "blue",

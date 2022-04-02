@@ -1,10 +1,12 @@
-import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import { Provider } from "react-redux";
+import React, { Suspense } from "react";
+
+import "./i18n";
 import App from "./App";
 import store from "./redux/store";
-import { Provider } from "react-redux";
-import "./i18n";
+
+import "./index.css";
 
 ReactDOM.render(
   <Suspense fallback={<p>Loading...</p>}>
